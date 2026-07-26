@@ -1,5 +1,6 @@
 
 import Login from "./pages/Login/Login"
+import Register from "./pages/register/register"
 
 
 
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <>
-    <Login></Login>
+    <Register/>
     </>
   )
 }

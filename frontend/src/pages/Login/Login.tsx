@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from 'react';
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
+import * as validators from '../../utils/validators'
+import * as authService from '../../services/authServices'
 
 function Login() {
 
@@ -10,61 +12,60 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  async function  handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setEmailError("");
-    setPasswordError("");
+    
+    const errors = validators.validateLogin(email, password);
 
-    const emailRegex = /^\w+@\w+\.\w+$/;
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+    setEmailError(errors.email);
+    setPasswordError(errors.password);
 
-    let hasError: boolean = false;
+    if (errors.hasError) {
+      // alert("Por favor corrija los errores antes de enviar el formulario");
+      return;
+    }
 
-    if (!email || !email.trim()) {
-      setEmailError("El correo es obligatorio");
-      hasError = true;
-    } else if (!emailRegex.test(email)) {
-      setEmailError("El correo no es válido");
-      hasError = true;
+    type LoginResponse = { success: boolean; message?: string };
+    const response = (await authService.login(email, password)) as LoginResponse;
+
+    if (response.success) {
+      alert(response.message);
+    }else{
+      alert(response.message);
     }
-    if (!password || !password.trim()) {
-      setPasswordError("La contraseña es obligatoria");
-      hasError = true;
-    } else if (!passwordRegex.test(password)) {
-      setPasswordError("Contraseña invalida");
-      hasError = true;
-    }
-    if (!hasError) {
-      alert("inicio de sesion correctamente")
-    }
+
   }
-console.log({ emailError, passwordError });
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="border-b border-gray-900/10 pb-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900">Inicio de sesion</h2>
+    <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
+       <div className="w-full max-w-md bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+
+        <header className="border-b border-gray-900/10 pb-6 mb-6">
+          <h1 className="text-lg font-semibold text-gray-900">
+            Inicio de sesión
+          </h1>
+
           <p className="mt-1 text-sm text-gray-600">
-            Incie sesion para el ingreso a eventhub o registrese:
+            Inicia sesión para acceder a EventHub o crea una cuenta.
           </p>
-        </div>
+        </header>
 
         <form onSubmit={handleSubmit}>
           <Input
-            label={'Correo'}
-            id={'user_email'}
-            placeholder={'Ingrese su correo'}
             type={'email'}
+            id={'user_email'}
+            label={'Correo'}
+            placeholder={'Ingrese su correo'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             error={emailError}
           />
           <Input
-            label={'Contraseña'}
-            id={'user_contrasena'}
-            placeholder={'Ingrese su contraseña'}
             type={"password"}
+            id={'user_contrasena'}
+            label={'Contraseña'}
+            placeholder={'Ingrese su contraseña'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             error={passwordError}
@@ -75,7 +76,7 @@ console.log({ emailError, passwordError });
           </Button>
         </form>
       </div>
-    </div>
+    </main>
   )
 }
 
