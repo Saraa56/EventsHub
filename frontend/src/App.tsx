@@ -1,15 +1,11 @@
-
-import Login from "./pages/Login/Login"
-import Register from "./pages/register/register"
+import AppRouter from "./routes/AppRouter"
 
 
 
 function App() {
-
-
   return (
     <>
-    <Register/>
+    <AppRouter/>
     </>
   )
 }

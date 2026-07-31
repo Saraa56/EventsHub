@@ -2,7 +2,10 @@ import { useState, type FormEvent } from 'react';
 import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import * as validators from '../../utils/validators'
-import * as authService from '../../services/authServices'
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../services/authServices';
+import type { AuthResponse } from "../../types/auth";
+import { STORAGE_KEYS } from '../../constants/storage';
 
 function Login() {
 
@@ -12,29 +15,34 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  async function  handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    
     const errors = validators.validateLogin(email, password);
 
     setEmailError(errors.email);
     setPasswordError(errors.password);
 
     if (errors.hasError) {
-      // alert("Por favor corrija los errores antes de enviar el formulario");
       return;
     }
 
-    type LoginResponse = { success: boolean; message?: string };
-    const response = (await authService.login(email, password)) as LoginResponse;
+    const response = await login(email, password)  as AuthResponse;
 
     if (response.success) {
+      
+      localStorage.setItem(STORAGE_KEYS.IS_AUTHENTICATED, "true")
+      
       alert(response.message);
+      
+      navigate("/dashboard");
+      
     }else{
       alert(response.message);
     }
-
+    
   }
 
   return (
@@ -52,6 +60,7 @@ function Login() {
         </header>
 
         <form onSubmit={handleSubmit}>
+        <div className="mb-5">
           <Input
             type={'email'}
             id={'user_email'}
@@ -61,6 +70,8 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
             error={emailError}
           />
+        </div>
+        <div className='mb-5'>
           <Input
             type={"password"}
             id={'user_contrasena'}
@@ -70,7 +81,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             error={passwordError}
           />
-
+        </div>
           <Button id={'button_login'} className="w-full mt-2" type='submit'>
             Iniciar Sesion
           </Button>
