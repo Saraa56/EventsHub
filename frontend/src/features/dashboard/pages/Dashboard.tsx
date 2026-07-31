@@ -42,12 +42,12 @@ function Dashboard() {
                 {/* Resumen */}
                 <section
                     id="resumen-eventos"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 "
                 >
 
                     <article
                         id="eventos-create"
-                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4"
+                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition duration-200"
                     >
                         <div className="justify-between items-center mb-2 flex">
                             <h3 className="text-gray-600 text-xs my-1 font-bold tracking-wide uppercase">
@@ -68,7 +68,7 @@ function Dashboard() {
 
                     <article
                         id="eventos-proximos"
-                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4"
+                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4 hadow-sm hover:shadow-md hover:-translate-y-0.5 transition duration-200"
                     >
                         <div className="justify-between items-center mb-2 flex">
                             <h3 className="text-gray-600 text-xs my-1 font-bold tracking-wide uppercase">
@@ -89,7 +89,7 @@ function Dashboard() {
 
                     <article
                         id="participacion"
-                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4"
+                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4 hadow-sm hover:shadow-md hover:-translate-y-0.5 transition duration-200"
                     >
                         <div className="justify-between items-center mb-2 flex">
                             <h3 className="text-gray-600 text-xs my-1 font-bold tracking-wide uppercase">
@@ -110,7 +110,7 @@ function Dashboard() {
 
                     <article
                         id="eventos-finalizados"
-                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4"
+                        className="bg-white border border-gray-100 shadow-sm rounded-2xl p-4 hadow-sm hover:shadow-md hover:-translate-y-0.5 transition duration-200"
                     >
                         <div className="justify-between items-center mb-2 flex">
                             <h3 className="text-gray-600 text-xs my-1 font-bold tracking-wide uppercase">

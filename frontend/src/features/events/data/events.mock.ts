@@ -20,5 +20,19 @@
         location: "Auditorio Nacional",
         participants: 2,
         status: "Proximo"
+    },
+    {
+        title: "Conferencia Java",
+        date: "1 Ago, 2025",
+        location: "Auditorio Nacional",
+        participants: 2,
+        status: "Proximo"
+    },
+    {
+        title: "Conferencia Java",
+        date: "1 Ago, 2025",
+        location: "Auditorio Nacional",
+        participants: 2,
+        status: "Proximo"
     }
     ]   ;

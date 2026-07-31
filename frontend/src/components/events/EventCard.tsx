@@ -10,8 +10,8 @@ function EventCard({
 }: EventCardProps) {
 
     return (
-        <article className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-
+        <article className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-200">
+            
             {/* Imagen */}
             <div className="h-40 w-full bg-gray-100">
                 <img
