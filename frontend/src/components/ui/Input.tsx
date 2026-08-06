@@ -14,22 +14,36 @@ interface InputProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({ label, placeholder, type, id, value, error, required, disabled, icon: Icon, onChange, className }: InputProps) {
+export default function Input({
+    label, 
+    placeholder, 
+    type, 
+    id, 
+    value, 
+    error, 
+    required, 
+    disabled, 
+    icon: Icon, 
+    onChange, 
+    className 
+}: InputProps) {
     return (
         <div className="w-full">
             {label && (
-                <label htmlFor={id} className="block text-sm/6 font-medium text-gray-900">
+                <label 
+                htmlFor={id} 
+                className="block text-xs font-medium uppercase tracking-wide text-[#B5A89E]"
+                >
                     {label}
                 </label>
             )}
 
-            {/* Agregamos 'relative' aquí para que el icono absoluto se guíe por esta caja */}
-            <div className="mt-2 relative flex items-center h-9 w-full">
-                
+    
+            <div className="relative mt-2">              
                 {Icon && (
                     /* Centrado vertical perfecto al inicio del campo */
-                    <div className="absolute left-3 flex items-center pointer-events-none z-10">
-                        <Icon className="w-4 h-4 text-gray-400" />
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                        <Icon className="h-4 w-4 text-[#8F817B]" />
                     </div>
                 )}
 
@@ -42,16 +56,31 @@ export default function Input({ label, placeholder, type, id, value, error, requ
                     required={required}
                     disabled={disabled}
                     className={`
-                        block w-full h-full rounded-md bg-white border border-gray-200 pr-3 text-base text-gray-900 placeholder:text-gray-400 
-                        focus:outline-none focus:border-cyan-600 sm:text-sm
-                        disabled:cursor-not-allowed disabled:opacity-50
-                        ${Icon ? 'pl-9' : 'pl-3'} 
+                        block
+                        w-full
+                        rounded-md
+                        border
+                        border-[#2A1A1B]
+                        bg-[#0F0809]
+                        px-4
+                        py-4
+                        text-sm
+                        text-[#F0EAE4]
+                        placeholder:text-[#6F6260]
+                        outline-none
+                        transition
+                        focus:border-[#6B4547]
+                        focus:ring-1
+                        focus:ring-[#6B4547]
+                        disabled:cursor-no-allowed
+                        disabled:opacity-50
+                        ${Icon ? 'pl-11' : ''} 
                         ${className ?? ''}
                     `}
                 />
             </div>
 
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+            {error && <p className="mt-1 text-sm text-red-700">{error}</p>}
         </div>
     );
 }
