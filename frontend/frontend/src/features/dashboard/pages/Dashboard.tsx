@@ -8,6 +8,8 @@ import { IoSearch } from "react-icons/io5";
 
 import Button from "../../../components/ui/Button";
 import Input from "../../../components/ui/Input";
+import EventCard from "../../../components/events/EventCard";
+import { events } from "../../events/data/events.mock";
 
 function Dashboard() {
     return (
@@ -189,6 +191,23 @@ function Dashboard() {
                         </Button>
 
                     </div>
+                </section>
+
+                {/* Lista de eventos */}
+                <section
+                    id="eventos-lista"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6"
+                >
+                    {events.map((event, index) => (
+                        <EventCard
+                            key={index}
+                            title={event.title}
+                            date={event.date}
+                            location={event.location}
+                            participants={event.participants}
+                            status={event.status}
+                        />
+                    ))}
                 </section>
 
             </div>
