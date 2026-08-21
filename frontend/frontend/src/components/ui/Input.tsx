@@ -60,7 +60,7 @@ export default function Input({
                         w-full
                         rounded-md
                         border
-                        border-[#5C2E30]
+                        border-[#2A1A1B]
                         bg-[#0F0809]
                         px-4
                         py-4

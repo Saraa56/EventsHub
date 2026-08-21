@@ -4,7 +4,6 @@ const VARIANTES = {
   primario: "bg-[#351C1D] hover:bg-[#472628] text-[#F0EAE4]",
   peligro: "bg-red-500 hover:bg-red-600 text-white",
   secundario: "bg-[#180C0D] hover:bg-[#281516] text-[#F0EAE4]",
-   plano: "",
 } as const;
 
 const ROUNDED_STYLES = {
@@ -26,31 +25,32 @@ interface ButtonProps {
   rounded?: keyof typeof ROUNDED_STYLES;
 }
 
-export default function Button({
-  children,
-  id,
-  className,
-  type,
-  disabled,
-  onClick,
-  variant = 'primario',
-  rounded = 'md'
+export default function Button({ 
+  children, 
+  id, 
+  className, 
+  type, 
+  disabled, 
+  onClick, 
+  variant = 'primario', 
+  rounded = 'md' 
 }: ButtonProps) {
   return (
     <button
       id={id}
       className={`
+        ${VARIANTES[variant]}
         ${ROUNDED_STYLES[rounded]}
+        ${className ?? ""}
+         px-4 py-3
         text-sm font-semibold
         transition-colors
         focus-visible:outline-none
         focus-visible:ring-2
+        focus-visible:ring-[#B5A89E]
         disabled:opacity-50
-        disabled:cursor-not-allowed
-        px-4 py-3
-        ${VARIANTES[variant]}
-        ${className ?? ""}
-      `}
+        disabled:cursor-not-allowed  
+        `}
       type={type}
       disabled={disabled}
       onClick={onClick}

@@ -3,7 +3,6 @@ import Button from '../../components/ui/Button'
 import Input from '../../components/ui/Input'
 import  * as validators from '../../utils/validators';
 import * as authService from '../../services/authServices'
-import AuthLayout from '../../components/layaout/AuthLayout';
 
 function Register() {
     
@@ -41,10 +40,17 @@ function Register() {
      
     }
     return (
-        <main className="min-h-screen bg-[#060203] text-[#F0EAE4]">
-            
-            <AuthLayout badge="Registrarse" title="Crea tu cuenta" showBackHome={true} createAccount="¿Ya tienes cuenta?" metodoAuth="login" textAuth="Inicia sesión">
-
+        <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
+            <div className="w-full max-w-md bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+              
+            <header className="border-b border-gray-900/10 pb-6 mb-6">
+                <h1 className="text-lg font-semibold text-gray-900">
+                    Registro
+                </h1>
+                <p className="mt-1 text-sm text-gray-600">
+                    Regístrese para crear una cuenta en EventHub:
+                </p>
+            </header>
             <form onSubmit={handleSubmit}>
                 <div className='mb-5'>
                 <Input type={'text'} id={'user_name'} label={'Nombre de usuario'} placeholder={'Ingrese su nombre'} value={name} onChange={(e) => setName(e.target.value)} error={nameError}/>
@@ -65,7 +71,7 @@ function Register() {
                     Registrarse
                 </Button>
             </form>
-        </AuthLayout>
+            </div>
         </main>
     )
 }
