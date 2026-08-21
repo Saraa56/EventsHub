@@ -1,46 +1,17 @@
-import { useState, type FormEvent } from 'react';
-import Button from '../../components/ui/Button';
-import Input from '../../components/ui/Input';
-import * as validators from '../../utils/validators';
-import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../../services/authServices';
-import type { AuthResponse } from "../../types/auth";
-import { STORAGE_KEYS } from '../../constants/storage';
-import { CalendarDays, Mail, Lock, Menu, X } from 'lucide-react';
+import { useState,  type ReactNode} from 'react';
+import { Link } from 'react-router-dom';
+import { CalendarDays, Menu, X } from 'lucide-react';
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  
+interface AuthLayoutProps {
+  children: ReactNode;
+  badge: string;
+  title: string;
+  showBackHome?: boolean;
+}
+
+function AuthLayout({children, badge, title, showBackHome}: AuthLayoutProps) {
   // Estado para el menú desplegable en móvil
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navigate = useNavigate();
-
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const errors = validators.validateLogin(email, password);
-
-    setEmailError(errors.email);
-    setPasswordError(errors.password);
-
-    if (errors.hasError) {
-      return;
-    }
-
-    const response = await login(email, password) as AuthResponse;
-
-    if (response.success) {
-      localStorage.setItem(STORAGE_KEYS.IS_AUTHENTICATED, "true");
-      alert(response.message);
-      navigate("/dashboard");
-    } else {
-      alert(response.message);
-    }
-  }
 
   return (
     <main className="min-h-screen bg-[#060203] text-[#F0EAE4]">
@@ -126,7 +97,7 @@ function Login() {
         )}
       </nav>
 
-      {/* SECCIÓN PRINCIPAL DE LOGIN */}
+      {/* SECCIÓN PRINCIPAL */}
       <section className="grid min-h-[calc(100vh-4rem)] lg:grid-cols-2">
         {/* Imagen Lateral con Difuminado */}
         <div className="relative hidden overflow-hidden lg:block
@@ -136,7 +107,7 @@ function Login() {
             [mask-position:center]">
 
           <img
-            src="../../public/fondo_auth.png"
+            src="/fondo_auth.png"
             alt="Decoración de un evento"
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -155,73 +126,34 @@ function Login() {
           </div>
         </div>
 
-        {/* Formulario */}
+
         <div className="flex items-center justify-center px-6 py-12 lg:px-16">
-          <div className="w-full max-w-lg">
-            <div className="mb-10">
-              <p className="mb-3 text-xs uppercase tracking-widest text-[#B5A89E]">
-                Acceso
-              </p>
-              <h1 className="font-serif text-3xl md:text-4xl font-semibold">
-                Bienvenido de vuelta
-              </h1>
+            <div className="w-full max-w-lg">
+              <div className="mb-10">
+                <p className="mb-3 text-xs uppercase tracking-widest text-[#B5A89E]">
+                    {badge}
+                </p>
+                <h1 className="font-serif text-3xl md:text-4xl font-semibold">
+                    {title}
+                </h1>
+              </div>
+                 {/* Contenido de la Página (Formulario) */}
+                {children}
+
+                {showBackHome && (
+                    <Link
+                        to="/"
+                        className="mt-6 inline-block text-sm text-[#8F817B] hover:text-[#F0EAE4]"
+                    >
+                        ← Volver al inicio
+                    </Link>
+                )}
+                 
             </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <Input
-                type="email"
-                id="user_email"
-                label="Correo electrónico"
-                placeholder="tu@correo.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={emailError}
-                icon={Mail}
-              />
-
-              <Input
-                type="password"
-                id="user_contrasena"
-                label="Contraseña"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={passwordError}
-                icon={Lock}
-              />
-
-              <Button
-                id="button_login"
-                className="mt-2 w-full py-4"
-                type="submit"
-              >
-                Iniciar sesión
-              </Button>
-            </form>
-
-            <div className="mt-8 border-t border-[#1C1112] pt-8 text-center">
-              <p className="text-sm text-[#8F817B]">
-                ¿No tienes cuenta?{" "}
-                <Link
-                  to="/register"
-                  className="font-semibold text-[#F0EAE4] hover:text-[#B5A89E]"
-                >
-                  Regístrate gratis
-                </Link>
-              </p>
-
-              <Link
-                to="/"
-                className="mt-6 inline-block font-mono text-sm text-[#8F817B] hover:text-[#F0EAE4]"
-              >
-                ← Volver al inicio
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
     </main>
   );
 }
 
-export default Login;
+export default AuthLayout;
