@@ -25,7 +25,7 @@ export default function Navbar() {
           {/* Menú Desktop (Visibilidad md:flex) */}
           <div className="hidden items-center gap-8 md:flex">
             <Link 
-              to="/events" 
+              to="/explore" 
               className="text-sm text-[#8F817B] transition hover:text-[#F0EAE4]"
             >
               Explorar
@@ -65,7 +65,7 @@ export default function Navbar() {
           <div className="border-b border-[#1C1112] bg-[#060203] px-6 py-4 md:hidden">
             <div className="flex flex-col space-y-4">
               <Link 
-                to="/events"
+                to="/explore"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-sm text-[#8F817B] transition hover:text-[#F0EAE4]"
               >
