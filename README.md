@@ -17,34 +17,15 @@ EventHub es una plataforma web para explorar, descubrir y gestionar eventos. El 
 
 ## Características principales
 
-* 🔐 **Autenticación:** registro e inicio de sesión de usuarios.
-* 🛡️ **Rutas protegidas:** acceso controlado a las secciones privadas de la aplicación.
-* 🔎 **Búsqueda:** permite buscar eventos por nombre o ciudad.
-* 🏷️ **Filtros:** filtrado de eventos por categorías.
-* 📅 **Exploración de eventos:** visualización de diferentes eventos disponibles.
-* 🧩 **Componentes reutilizables:** componentes diseñados para facilitar el mantenimiento y escalabilidad.
-* 📱 **Diseño responsive:** adaptado a diferentes tamaños de pantalla.
-* 🎨 **UI/UX:** interfaz diseñada teniendo en cuenta jerarquía visual, usabilidad y consistencia.
+*  **Autenticación:** registro e inicio de sesión de usuarios.
+*  **Rutas protegidas:** acceso controlado a las secciones privadas de la aplicación.
+*  **Búsqueda:** permite buscar eventos por nombre o ciudad.
+*  **Filtros:** filtrado de eventos por categorías.
+*  **Exploración de eventos:** visualización de diferentes eventos disponibles.
+*  **Componentes reutilizables:** componentes diseñados para facilitar el mantenimiento y escalabilidad.
+*  **Diseño responsive:** adaptado a diferentes tamaños de pantalla.
+*  **UI/UX:** interfaz diseñada teniendo en cuenta jerarquía visual, usabilidad y consistencia.
 
-## Capturas de pantalla
-
-### Inicio de sesión
-
-![Login](./public/screenshots/login.png)
-
-### Registro
-
-![Register](./public/screenshots/register.png)
-
-### Exploración de eventos
-
-![Explorer](./public/screenshots/explorer.png)
-
-### Dashboard
-
-![Dashboard](./public/screenshots/dashboard.png)
-
-## Tecnologías
 
 Este proyecto fue desarrollado utilizando:
 
@@ -68,7 +49,7 @@ Este proyecto fue desarrollado utilizando:
 ### Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU-USUARIO/eventshub.git
+git clone https://github.com/Saraa56/EventsHub/
 ```
 
 ### Acceder al proyecto
@@ -153,10 +134,8 @@ Este proyecto forma parte de mi portafolio como estudiante de Ingeniería de Sof
 
 ## Autora
 
-**Saris**
+**Saraa56: Sara Otero**
 
 Ingeniería de Software
 
----
 
-⭐ Si el proyecto te parece interesante, considera darle una estrella al repositorio.
