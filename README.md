@@ -1,4 +1,4 @@
-EventHub
+## EventHub
 
 EventHub es una plataforma web para explorar, descubrir y gestionar eventos. El proyecto está enfocado en ofrecer una experiencia de usuario sencilla, moderna y responsive, utilizando una arquitectura basada en componentes reutilizables.
 
